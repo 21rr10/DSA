@@ -187,7 +187,7 @@ void addAftPos(int x,int pos){
     for (int i = 1; i <= pos; i++)
     {
         temp=temp->next;
-    }
+    }  
     t->next=temp->next;
     temp->next=t;
     
