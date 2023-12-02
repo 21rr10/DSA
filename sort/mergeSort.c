@@ -11,7 +11,7 @@ void print(int a[]){
     for(i=0;i<n;i++){
         printf("%d\t", a[i]);
     }
-    printf("\n");
+    printf("\n"); 
 }
 
 void mergeSort(int a[],int start,int end){
