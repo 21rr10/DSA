@@ -19,18 +19,107 @@ struct node{
     struct node *next;
 }*head=NULL,*tail=NULL;
 
-void removeAftEl(){
+void removeAftEl() {
+    struct node *temp, *t;
+    int key;
+    printf("Enter the element after which you want to remove: ");
+    scanf("%d", &key);
 
+    temp = head;
+    while (temp != NULL && temp->data != key) {
+        temp = temp->next;
+    }
+
+    if (temp == NULL || temp->next == NULL) {
+        printf("Element not found or no element after it to remove.\n");
+        return;
+    }
+
+    t = temp->next;
+    temp->next = t->next;
+    free(t);
 }
-void removeBfrEl(){
-    
+
+void removeBfrEl() {
+    struct node *temp, *t;
+    int key;
+    printf("Enter the element before which you want to remove: ");
+    scanf("%d", &key);
+
+    temp = head;
+    if (temp == NULL || temp->data == key) {
+        printf("Element not found or no element before it to remove.\n");
+        return;
+    }
+
+    if (temp->next != NULL && temp->next->data == key) {
+        struct node *toRemove = temp;
+        head = temp->next;
+        free(toRemove);
+        return;
+    }
+
+    while (temp->next != NULL && temp->next->next != NULL && temp->next->next->data != key) {
+        temp = temp->next;
+    }
+
+    if (temp->next == NULL || temp->next->next == NULL) {
+        printf("Element not found or no element before it to remove.\n");
+        return;
+    }
+
+    t = temp->next;
+    temp->next = t->next;
+    free(t);
 }
-void removeAftPos(){
-    
+
+void removeAftPos() {
+    struct node *temp, *t;
+    int pos;
+    printf("Enter the position after which you want to remove: ");
+    scanf("%d", &pos);
+
+    temp = head;
+    for (int i = 1; i < pos && temp != NULL; i++) {
+        temp = temp->next;
+    }
+
+    if (temp == NULL || temp->next == NULL) {
+        printf("Invalid position or no element after it to remove.\n");
+        return;
+    }
+
+    t = temp->next;
+    temp->next = t->next;
+    free(t);
 }
-void removeBfrPos(){
-    
+
+void removeBfrPos() {
+    struct node *temp, *t;
+    int pos;
+    printf("Enter the position before which you want to remove: ");
+    scanf("%d", &pos);
+
+    if (pos <= 1 || head == NULL || head->next == NULL) {
+        printf("Invalid position or no element before it to remove.\n");
+        return;
+    }
+
+    temp = head;
+    for (int i = 1; i < pos - 1 && temp->next->next != NULL; i++) {
+        temp = temp->next;
+    }
+
+    if (temp->next == NULL || temp->next->next == NULL) {
+        printf("Invalid position or no element before it to remove.\n");
+        return;
+    }
+
+    t = temp->next;
+    temp->next = t->next;
+    free(t);
 }
+
 void removeAtEnd(){
         struct node *t;
         t=head;
@@ -327,9 +416,10 @@ void reverse(){
 
 int main(){
     int choice,x,p;
-    while(choice!=20){
-    printf("\nMenu\n1. create a singly linked lisvoid t \n2.display\n3. add element at the beginning\n  4.add element at the end\n  5.add element at a position\n  6.add element after a position\n  7.add element before a position\n  8.add element after an element\n  9.add element before an element\n  10 create a sorted ll\n  11 reverse a linked list\n  12 remove element at beginning\n  13 remove element after a position\n  14 remove element before a position\n  15 remove element after an element\n  16 remove element before an element\n  17 sort the link list\n  19 search for an element using linear search\n  18 search for an element using binary search\n20. exit\n Enter your choice:\n-> ");
-  scanf("%d",&choice); 
+    while(choice!=19){
+   printf("\nMenu\n1. Create a singly linked list\n2. Display\n3. Add element at the beginning\n4. Add element at the end\n5. Add element at a position\n6. Add element after a position\n7. Add element before a position\n8. Add element after an element\n9. Add element before an element\n10. Create a sorted linked list\n11. Reverse a linked list\n12. Remove element at the beginning\n13. Remove element at the end\n14. Remove element before a position\n15. Remove element after an element\n16. Remove element before an element\n17. Sort the linked list\n18. Search for an element using linear search\n19. Exit\nEnter your choice:\n-> ");
+   scanf("%d", &choice);
+
   
    switch (choice)
    {
@@ -351,6 +441,7 @@ int main(){
             scanf("%d%d",&x,&p);
             addAtPos(x,p);
             break;
+           
     case 6 :printf("enter the data and the position");
             scanf("%d%d",&x,&p);
             addAftPos(x,p);
@@ -376,35 +467,28 @@ int main(){
     case 11 :reverse();
              printf("reversed");
             break;
-    case 12 :
-            removeAtBeg();
-            break;
-    case 13 :
-            removeAtEnd();
-            break;
-    case 14 :printf("enter the data");
-            scanf("%d",&x);
-            removeBfrPos(x);
-            break;
 
-    case 15 :printf("enter the data");
-            scanf("%d",&x);
-            removeAftEl(x);
+    case 12 :removeAtBeg();
             break;
-    case 16 :printf("enter the data");
-            scanf("%d",&x);
-            removeBfrEl(x);
+    case 13 :removeAtEnd();
             break;
-    case 17 :removeAftEl();
+    case 14 :removeBfrPos(x);
             break;
-    case 18 :
+ 
+    case 16 :removeBfrEl();
             break;
-    case 19 :printf("enter the key el");
+    case 15 :
+            removeAftEl();
+            break;
+    
+    case 17 :removeAftPos();
+            break;
+    case 18 :printf("enter the key el");
                 scanf("%d",&x);
              linSearch(x);
             break;
     
-    case 20 : printf("exit");
+    case 19 : printf("exit");
                 exit(0);
             break;
     default:printf("Wrong ");
