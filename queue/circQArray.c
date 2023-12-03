@@ -8,19 +8,21 @@ int rear=-1;
 int queue[MAX];
 
 void enque(){
-    if(rear==MAX-1){
+    if((front==0 && rear==MAX-1)||front==rear+1){
         printf("queue is full");
         return;
     }
-    printf("Enter the data");
+    
 
     if(front==-1&&rear==-1){
-        front=0;rear=0;
-       scanf("%d",&queue[front]);
-       queue[rear]=queue[front];
-       return;
+        front=0;rear=0;       
     }
-    scanf("%d",&queue[++rear]);
+    else{
+    rear=(rear+1)%MAX;
+    }
+
+    printf("Enter the data");
+    scanf("%d",&queue[rear]);
     return;
 }
 
@@ -35,7 +37,7 @@ void deque(){
         return;
     }
     printf("deleted element is %d", queue[front]);
-    ++front;
+    front=(front+1)%MAX;
 }
 
 void display(){
@@ -43,7 +45,7 @@ void display(){
         printf("queue qmpty");
         return;
     }
-    for(int i=front;i<=rear;i++){
+    for(int i=front;i<=rear;i=(i+1)%MAX){
         printf("%d\t",queue[i]);
     }
 }
