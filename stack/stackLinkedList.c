@@ -44,11 +44,14 @@ void display(){
     }
 }
 
+void peek(){
+    printf("%d",start->data);
+}
 
 int main(){
     int choice=0;
-    while (choice !=4){
-        printf("Menu\n1. push\n2. pop\n 3.display\n 4. exit\n\nenter you choice");
+    while (choice !=5){
+        printf("\nMenu\n1. push\n2. pop\n 3.display\n4. Peek\n 5. exit\n\nenter you choice");
         scanf("%d",&choice);
         switch (choice)
         {
@@ -58,7 +61,9 @@ int main(){
             break;
         case 3:display();
             break;
-        case 4: printf("exit");exit(0);
+        case 4: peek();
+            break;
+        case 5: printf("exit");exit(0);
         default:printf("enter right choice");
             
         }
