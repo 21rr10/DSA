@@ -4,7 +4,7 @@
 
 #define MAX 10
 
-int array[MAX];
+int queue[MAX];
 int front = -1;
 int rear = -1;
 
@@ -15,34 +15,35 @@ void enque(int data){
     }
     if(front == -1 && rear == -1){
         front = rear = 0;
-        array[rear] = data;
+        queue[rear] = data;
     }else{
         int i;
         for(i=front; i<=rear; i++){
-            if(data > array[i]){
+            if(data > queue[i]){
                 break;
             }
         }
         for(int j=rear+1; j>i; j--){
-            array[j] = array[j-1];
+            queue[j] = queue[j-1];
         }
-        array[i] = data;
+        queue[i] = data;
         rear++;
     }
 }
 
-void deque(){
-    if(front == -1){
-        printf("Queue is empty");
+void deque(){//delete at beginning
+    if(front==-1 && rear==-1){
+        printf("the queue is empty");
         return;
     }
-    printf("%d ", array[front]);
-    if(front == rear){
-        front = rear = -1;
-    }else{
-        front++;
+    if(front==rear){
+        printf(" deleted element is %d", queue[front]);
+        front=rear=-1;
+        return;
     }
+     printf("deleted element is %d", queue[front++]);
 }
+
 
 void display(){
     if(front == -1){
@@ -50,7 +51,7 @@ void display(){
         return;
     }
     for(int i=front; i<=rear; i++){
-        printf("%d\t", array[i]);
+        printf("%d\t", queue[i]);
     }
 }
 
