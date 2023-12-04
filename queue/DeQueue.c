@@ -24,33 +24,45 @@ void end_enque(){//insert at end
         scanf("%d",&queue[++rear]);
         return;
 }
-void display(){
-    if(front==-1){
-        printf("queue qmpty");
+void display() {
+    if(front == -1) {
+        printf("queue empty");
         return;
     }
-    for(int i=front;i<=rear;i++){
-        printf("%d\t",queue[i]);
+    printf("Elements in the circular queue are: ");
+    if(rear >= front) {
+        for(int i = front; i <= rear; i++)
+            printf("%d ",queue[i]);
     }
+    else {
+        for(int i = front; i < MAX; i++)
+            printf("%d ", queue[i]);
+  
+        for(int i = 0; i <= rear; i++)
+            printf("%d ", queue[i]);
+    }
+    printf("\n");
 }
-void begin_enque(){//insert at beginning
-    if((front ==0&&rear==MAX-1)||rear==front-1){
+
+void begin_enque() {
+    if((front == 0 && rear == MAX-1) || rear == front-1){
         printf("queue is full");
         return;
     }
-    if(front==-1 && rear==-1){
-        front=0;rear=0; 
+    else {
+        if(front == -1) { // if queue is initially empty
+            front = 0;
+            rear = 0;
+        }
+        else if(front == 0) { // if front is at the first position of queue
+            front = MAX - 1;
+        }
+        else { // decrement front
+            front = front - 1;
+        }
         printf("enter the data"); 
-        scanf("%d",&queue[front]);
-        queue[rear]=queue[front]; 
-        return;   
+        scanf("%d", &queue[front]);
     }
-    int size = MAX;
-    for(int i=size-1;i>0;i--){
-        queue[i]=queue[i-1];size++;
-    }
-        scanf("%d",&queue[0]);
-        return;
 }
 
 void begin_deque(){//delete at beginning
@@ -59,11 +71,11 @@ void begin_deque(){//delete at beginning
         return;
     }
     if(front==rear){
-        printf("the deleted element is %d", queue[front]);
+        printf(" deleted element is %d", queue[front]);
         front=rear=-1;
         return;
     }
-     printf("the deleted element is %d", queue[front++]);
+     printf("deleted element is %d", queue[front++]);
 }
 
 void end_deque(){//delete at end
@@ -72,11 +84,11 @@ void end_deque(){//delete at end
         return;
     }
     if(front==rear){
-        printf("the deleted element is %d", queue[front]);
+        printf("deleted element is %d", queue[front]);
         front=rear=-1;
         return;
     }
-     printf("the deleted element is %d", queue[rear--]);
+     printf(" deleted element is %d", queue[rear--]);
 
 }
 int main(){
@@ -86,7 +98,7 @@ int main(){
         scanf("%d",&choice);
         switch (choice)
         {
-        case 1: while(ch!=5){
+        case 1: ch=0;while(ch!=5){
                          printf("\nMenu\n1.insert into input restricted queue\n2.delete from front from input restricted enque\n3. delete from rear 4. display\n5. exit\nenter you choice ");
                          scanf("%d",&ch);
                          switch (ch){
@@ -107,8 +119,8 @@ int main(){
                             }
             break;
 
-        case 2: while(ch!=5){
-                         printf("\nMenu\n1.insert at rear into output restricted queue\n2.insert at front into input restricted enque\n3. delete from front4. display \n4. exit\nenter you choice ");
+        case 2: ch=0;while(ch!=5){
+                         printf("\nMenu\n1.insert at rear into output restricted queue\n2.insert at front into output restricted enque\n3. delete from front\n4. display \n4. exit\nenter you choice ");
                          scanf("%d",&ch);
                          switch (ch){
                             case 1: end_enque();
