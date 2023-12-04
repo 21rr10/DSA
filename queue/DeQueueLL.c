@@ -5,7 +5,7 @@ struct node{
     struct node *next;
 }*front=NULL,*rear=NULL;
 
-void addAtBeg(){
+void beg_enque(){
 
     struct node *t;
     t=(struct node *)malloc(sizeof(struct node));
@@ -22,7 +22,7 @@ void addAtBeg(){
 
 }
 
-void addAtEnd(){
+void end_enque(){
     struct node *t;
     t=(struct node *)malloc(sizeof(struct node));
      printf("Enter the data");
@@ -39,7 +39,7 @@ void addAtEnd(){
 
 }
 
-void removeAtEnd(){
+void end_deque(){
         struct node *t;
         t=front;
         if(front==NULL){
@@ -73,7 +73,7 @@ void removeAtEnd(){
         
 }
 
-void removeAtBeg(){
+void beg_deque(){
         struct node *t;
         
         if(front==NULL){
@@ -105,61 +105,72 @@ void display(){
         t=t->next;
     }
 }
+int main() {
+    int choice = 0, ch = 0;
+    while (choice != 3) {
+        printf("\nMenu\n1. Input restricted Enque\n2. Output restricted enque\n3. Exit\nEnter your choice: ");
+        scanf("%d", &choice);
+        switch (choice) {
+            case 1:ch=0;
+                while (ch != 5) {
+                    printf("\nMenu\n1. Insert into input restricted queue\n2. Delete from front from input restricted enque\n3. Delete from rear\n4. Display\n5. Exit\nEnter your choice: ");
+                    scanf("%d", &ch);
+                    switch (ch) {
+                        case 1:
+                            end_enque();
+                            break;
+                        case 2:
+                            beg_deque();
+                            break;
+                        case 3:
+                            end_deque();
+                            break;
+                        case 4:
+                            display();
+                            break;
+                        case 5:
+                            printf("Exit\n");
+                            break;
+                        default:
+                            printf("Wrong choice\n");
+                    }
+                }
+                break;
 
-int main(){
-    int choice =0,ch=0;
-    while(choice!=3){
-        printf("\nMenu\n1.input restricted Enque\n2.output restricted enque\n3. exit\nenter you choice ");
-        scanf("%d",&choice);
-        switch (choice)
-        {
-        case 1: while(ch!=5){
-                         printf("\nMenu\n1.insert into input restricted queue\n2.delete from front from input restricted enque\n3. delete from rear 4. display\n5. exit\nenter you choice ");
-                         scanf("%d",&ch);
-                         switch (ch){
-                            case 1: addAtEnd();;
-                                break;
-                            case 2: removeAtBeg();
-                                break;
-                            case 3: removeAtEnd();
-                                break;
-                            case 4:display();
-                                break;
-                            case 5: printf("exit");
-                                    
-                                    break;
-                            default: printf("wrong choice");
+            case 2:ch=0;
+                while (ch != 5) {
+                    printf("\nMenu\n1. Insert at rear into output restricted queue\n2. Insert at front into input restricted enque\n3. Delete from front\n4. Display\n5. Exit\nEnter your choice: ");
+                    scanf("%d", &ch);
+                    switch (ch) {
+                        case 1:
+                            end_enque();
+                            break;
+                        case 2:
+                            beg_enque();
+                            break;
+                        case 3:
+                            beg_deque();
+                            break;
+                        case 4:
+                            display();
+                            break;
+                        case 5:
+                            printf("Exit\n");
+                            break;
+                        default:
+                            printf("Wrong choice\n");
+                    }
+                }
+                break;
 
-                         }
-                            }
-            break;
-
-        case 2: while(ch!=5){
-                         printf("\nMenu\n1.insert at rear into output restricted queue\n2.insert at front into input restricted enque\n3. delete from front4. display \n4. exit\nenter you choice ");
-                         scanf("%d",&ch);
-                         switch (ch){
-                            case 1: addAtEnd();
-                                break;
-                            case 2: addAtBeg();
-                                break;
-                            case 3: removeAtBeg();
-                                break;
-                            case 4:display();
-                                break;
-                            case 5: printf("exit");
-                                    
-                                    break;
-                            default: printf("wrong choice");
-
-                         }
-                            }
-            break;
-        
-        case 3:printf("exit");
+            case 3:
+                printf("Exit\n");
                 exit(0);
                 break;
-        default:printf("enter the right choice");
-            
+                
+            default:
+                printf("Enter the right choice\n");
         }
     }
+    return 0;
 }
