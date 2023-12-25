@@ -4,7 +4,7 @@
 struct node{
     int data;
     struct node *next;
-}*start=NULL;
+}*top=NULL;
 
 void push(){
     struct node *t;
@@ -13,28 +13,28 @@ void push(){
     printf("Enter the element to push");
     scanf("%d",&t->data);
     
-    t->next=start;
-    start=t;
+    t->next=top;
+    top=t;
     return;
     
     
 }
 
 void pop(){
-    if(start==NULL){
+    if(top==NULL){
         printf("stack is empty");
         return;
     }
-    struct node *t=start;
+    struct node *t=top;
     printf("the popped element is %d",t->data);
-    start=start->next;
+    top=top->next;
     free(t);
     
 }
 
 void display(){
-    struct node *t=start;
-    if(start==NULL){
+    struct node *t=top;
+    if(top==NULL){
         printf("the stack is empty");
         return;
         }
@@ -45,7 +45,7 @@ void display(){
 }
 
 void peek(){
-    printf("%d",start->data);
+    printf("%d",top->data);
 }
 
 int main(){

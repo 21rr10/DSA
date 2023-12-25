@@ -28,7 +28,7 @@ void merge(int a[],int start,int mid,int end){
     int i=start,j=mid+1,k=0;
 
     while(i<=mid &&j<=end){
-        if(a[i]<a[j]){
+        if(a[i]<a[j]){ 
             temp[k]=a[i];
             i++;
         }

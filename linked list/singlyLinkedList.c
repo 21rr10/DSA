@@ -1,19 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-/*
 
-  
-  
-  remove element at a position
-  remove element after a position
-  remove element before a position
-  remove element after an element
-  remove element before an element
-  
-  
-  
-*/
 struct node{
     int data;
     struct node *next;
@@ -36,7 +24,7 @@ void removeAftEl() {
     }
 
     t = temp->next;
-    temp->next = t->next;
+    temp->next =NULL;
     free(t);
 }
 
@@ -47,7 +35,7 @@ void removeBfrEl() {
     scanf("%d", &key);
 
     temp = head;
-    if (temp == NULL || temp->data == key) {
+    if (temp == NULL || temp->data != key) {
         printf("Element not found or no element before it to remove.\n");
         return;
     }
@@ -116,7 +104,7 @@ void removeBfrPos() {
     }
 
     t = temp->next;
-    temp->next = t->next;
+    temp->next =NULL;
     free(t);
 }
 
@@ -289,8 +277,10 @@ void addAftPos(int x,int pos){
     t->data=x;
     t->next=NULL;
     if(pos==0){
-        t->next=head;
-        head=t;
+        // t->next=head;
+        // head=t;
+        printf("cant be added bfr 0");
+        free(t);
         return;
     }
 //     if(pos==1){

@@ -23,8 +23,8 @@ void pop(){
         printf("stack empty");
         return;
     }
-    printf("the popped item is %d ",stack[top]);
-    top--;
+    printf("the popped item is %d ",stack[top--]);
+    
 }
 
 void display(){

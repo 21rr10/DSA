@@ -29,7 +29,7 @@ void display() {
         printf("queue empty");
         return;
     }
-    printf("Elements in the circular queue are: ");
+    printf("Elements in the  queue are: ");
     if(rear >= front) {
         for(int i = front; i <= rear; i++)
             printf("%d ",queue[i]);
